@@ -1,7 +1,9 @@
-﻿using Fluent_Api.Dtos;
+﻿using Fluent_Api.Data;
+using Fluent_Api.Dtos;
 using Fluent_Api.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fluent_Api.Controllers
 {
@@ -9,10 +11,13 @@ namespace Fluent_Api.Controllers
     [ApiController]
     public class EmployeesController : ControllerBase
     {
+
+        private readonly AppDbContext _appDbContext;
         private readonly IEmployeeService _employeeService;
-        public EmployeesController(IEmployeeService employeeService)
+        public EmployeesController(IEmployeeService employeeService, AppDbContext appDbContext)
         {
             _employeeService = employeeService;
+            _appDbContext = appDbContext;
         }
 
         [HttpPost]

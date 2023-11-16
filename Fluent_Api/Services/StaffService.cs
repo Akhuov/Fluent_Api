@@ -21,7 +21,7 @@ namespace Fluent_Api.Services
                 var emp = new Staff()
                 {
                     Name = staffDto.Name,
-                    CompnayId = staffDto.CompanyId,
+                    CompanyId = staffDto.CompanyId,
                 };
                 await _appDbContext.Staffs.AddAsync(emp);
                 await _appDbContext.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace Fluent_Api.Services
                 if (stf != null)
                 {
                     stf.Name = staffDto.Name;
-                    stf.CompnayId = staffDto.CompanyId;
+                    stf.CompanyId = staffDto.CompanyId;
                     await _appDbContext.SaveChangesAsync();
                     return "Staff Updated";
                 }

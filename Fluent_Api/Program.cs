@@ -2,6 +2,7 @@ using Fluent_Api.Data;
 using Fluent_Api.Interfaces;
 using Fluent_Api.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IEmployeeService,EmployeeService>();
 builder.Services.AddScoped<ICompanyService,CompanyService>();
 builder.Services.AddScoped<IStaffService,StaffService>();
+
+builder.Services.AddControllersWithViews()
+                        .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {

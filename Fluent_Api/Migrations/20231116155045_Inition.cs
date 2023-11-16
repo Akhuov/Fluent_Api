@@ -5,7 +5,7 @@
 namespace Fluent_Api.Migrations
 {
     /// <inheritdoc />
-    public partial class inition : Migration
+    public partial class Inition : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,14 +30,14 @@ namespace Fluent_Api.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CompnayId = table.Column<int>(type: "int", nullable: false)
+                    CompanyId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Staffs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Staffs_Company_CompnayId",
-                        column: x => x.CompnayId,
+                        name: "FK_Staffs_Company_CompanyId",
+                        column: x => x.CompanyId,
                         principalTable: "Company",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -70,9 +70,9 @@ namespace Fluent_Api.Migrations
                 column: "StaffId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Staffs_CompnayId",
+                name: "IX_Staffs_CompanyId",
                 table: "Staffs",
-                column: "CompnayId");
+                column: "CompanyId");
         }
 
         /// <inheritdoc />

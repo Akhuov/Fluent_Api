@@ -35,7 +35,7 @@ namespace Fluent_Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company");
+                    b.ToTable("Company", (string)null);
                 });
 
             modelBuilder.Entity("Fluent_Api.Entities.Employee", b =>
@@ -61,7 +61,7 @@ namespace Fluent_Api.Migrations
 
                     b.HasIndex("StaffId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("Fluent_Api.Entities.Staff", b =>
@@ -72,7 +72,7 @@ namespace Fluent_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompnayId")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -81,9 +81,9 @@ namespace Fluent_Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompnayId");
+                    b.HasIndex("CompanyId");
 
-                    b.ToTable("Staffs");
+                    b.ToTable("Staffs", (string)null);
                 });
 
             modelBuilder.Entity("Fluent_Api.Entities.Employee", b =>
@@ -101,7 +101,7 @@ namespace Fluent_Api.Migrations
                 {
                     b.HasOne("Fluent_Api.Entities.Company", "Company")
                         .WithMany("Staffs")
-                        .HasForeignKey("CompnayId")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

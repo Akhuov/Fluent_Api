@@ -1,6 +1,8 @@
-﻿using Fluent_Api.Dtos;
+﻿using Fluent_Api.Data;
+using Fluent_Api.Dtos;
 using Fluent_Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fluent_Api.Controllers
 {
@@ -8,10 +10,13 @@ namespace Fluent_Api.Controllers
     [ApiController]
     public class StaffsController : ControllerBase
     {
+
+        private readonly AppDbContext _appDbContext;
         private readonly IStaffService _staffService;
-        public StaffsController(IStaffService staffService)
+        public StaffsController(IStaffService staffService, AppDbContext appDbContext)
         {
             _staffService = staffService;
+            _appDbContext = appDbContext;
         }
 
         [HttpPost]
@@ -48,6 +53,20 @@ namespace Fluent_Api.Controllers
         {
             var res = await _staffService.UpdateStaffAsync(id, staffDto);
             return Ok(res);
+        }
+
+        [HttpGet("Ex")]
+        public async ValueTask<IActionResult> GetExStaffs(int id)
+        {
+            try
+            {
+                var res = await _appDbContext.Staffs.Include(x => x.Employees).FirstOrDefaultAsync(x => x.Id == id);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return Ok(ex.Message);
+            }
         }
     }
 }

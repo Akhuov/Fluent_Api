@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fluent_Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231116142706_inition")]
-    partial class inition
+    [Migration("20231116155045_Inition")]
+    partial class Inition
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,7 @@ namespace Fluent_Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompnayId")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -84,7 +84,7 @@ namespace Fluent_Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompnayId");
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Staffs");
                 });
@@ -104,7 +104,7 @@ namespace Fluent_Api.Migrations
                 {
                     b.HasOne("Fluent_Api.Entities.Company", "Company")
                         .WithMany("Staffs")
-                        .HasForeignKey("CompnayId")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
